@@ -1,0 +1,134 @@
+body {
+  font-family: Lucida Grande, sans-serif;
+  background: #ccc;
+}
+.icon {
+  height: 32px;
+  max-width: 32px;
+  border-radius: 6px;
+  position: absolute;
+}
+.row {
+  height: 26px;
+  opacity: 1;
+  transition: .1s;
+}
+.tab {
+  font-size: 12px;
+  margin-left: 40px;
+  max-width: 100%;
+  display: inline-block;
+}
+.tab.active {
+  box-shadow: 0 0 4px #08f;
+}
+.group {
+  -webkit-column-break-inside: avoid;
+  padding-top: 2px;
+  padding-bottom: 14px;
+  position: relative;
+  white-space: nowrap;
+  width: 450px;
+  max-height: 1000px;
+  opacity: 1;
+  transition: .1s;
+}
+.grouptitle {
+  font-weight: bold;
+  font-size:14px;
+  height: 24px;
+}
+.title {
+  display:inline-block;
+  background: #fff;
+  border-radius: 3px;
+  padding: 4px;
+  cursor: pointer;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+.title .match {
+  font-weight: bold;
+  color: #06f;
+}
+.tab .title.incognito {
+  background: #88a;
+  color: #fff;
+}
+.tab[hilite] .title {
+  background: #ffc;
+  color: #000;
+}
+.row[data-selected=true] .title {
+  background: #dff;
+}
+.close::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: red;
+  display: block;
+  position: relative;
+  top: -4px;
+  left: -8px;
+  border-radius: 8px;
+}
+.close::after {
+  content: "";
+  width: 10px;
+  height: 2px;
+  background: #fff;
+  display: block;
+  position: relative;
+  top: -13px;
+  left: -5px;
+}
+.close {
+  position: absolute;
+  display: inline-block;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0s 0s; visibility 0s 0s;
+  cursor: pointer;
+}
+.tab:hover .close {
+  visibility: inherit;
+  opacity: 1;
+  transition: opacity 1s 1s; visibility 0s 1s;
+}
+.row[data-show=false] {
+  height: 0px;
+  opacity: 0;
+  pointer-events: none;
+}
+.group[data-show=false] {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+#matchtext {
+  color: #06f;
+  font-weight: bold;
+  margin-bottom: 12px;
+  display: none;
+}
+#matchtext[shown] {
+  display: block;
+}
+#matchtext::before, #matchtext::after {
+  color: #000;
+  font-weight: normal;
+}
+#matchtext::after {
+  content: ".";
+}
+#matchtext[shown=some]::before {
+  content: "Tabs matching ";
+}
+#matchtext[shown=none]::before {
+  content: "No tabs match ";
+}
