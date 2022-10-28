@@ -90,13 +90,13 @@ body {
   display: inline-block;
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0s 0s; visibility 0s 0s;
+  transition: opacity 0s 0s, visibility 0s 0s;
   cursor: pointer;
 }
 .tab:hover .close {
   visibility: inherit;
   opacity: 1;
-  transition: opacity 1s 1s; visibility 0s 1s;
+  transition: opacity .1s .1s, visibility 0s .1s;
 }
 .row[data-show=false] {
   height: 0px;

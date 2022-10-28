@@ -37,6 +37,7 @@ function makeGroups(currentId, tabs) {
       groups.push(group);
     }
     group.tabs.push({
+      fullTitle: tab.title,
       title: tab.title,
       id: tab.id,
       windowId: tab.windowId,
@@ -163,6 +164,7 @@ function clickToTab(element, wid, tid) {
   element.addEventListener('click', function() {
     chrome.tabs.update(tid, {active: true});
     chrome.windows.update(wid, {focused: true});
+    closePopup();
   });
 }
 
@@ -216,6 +218,7 @@ function showTabs(currentId, tabs) {
       l.tid = tab.id;
       l.wid = tab.windowId;
       l.tabTitle = tab.title;
+      l.fullTitle = tab.fullTitle;
       var d = create('DIV', 'tab', l);
       d.windowId = tab.windowId;
       var t = create('DIV', 'title', d);
@@ -281,18 +284,24 @@ function updateSearch() {
 
     for (var j = 0; j < rows.length; j++) {
       var title = rows[j].querySelector('.title');
+      var fullTitle = rows[j].fullTitle;
       var tabTitle = rows[j].tabTitle;
       var show = false;
       if (showAll) {
         show = true;
         setText(title, tabTitle);
       } else {
-        var match = reg.exec(tabTitle);
+        var match = reg.exec(fullTitle);
         if (match) {
           show = true;
-          var start = match.index;
-          var end = match.index + match[0].length;
-          setText(title, tabTitle.substring(0, start), match[0], tabTitle.substring(end));
+          match = reg.exec(tabTitle);
+          if (match) {
+            var start = match.index;
+            var end = match.index + match[0].length;
+            setText(title, tabTitle.substring(0, start), match[0], tabTitle.substring(end));
+          } else {
+            setText(title, tabTitle);
+          }
         }
       }
       rows[j].dataset.show = show;
@@ -334,6 +343,7 @@ function DoSelected() {
   if (state.selectedRow) {
     chrome.tabs.update(state.selectedRow.tid, {active: true});
     chrome.windows.update(state.selectedRow.wid, {focused: true});
+    closePopup();
   }
 }
 
