@@ -210,7 +210,7 @@ function showTabs(currentId, tabs) {
       t.textContent = group.title;
     }
     var f = create('IMG', 'icon', g);
-    f.src = group.favIconUrl;
+    f.src = group.favIconUrl || 'default_favicon.svg';
 
     for (var j = 0; j < group.tabs.length; j++) {
       var tab = group.tabs[j];
