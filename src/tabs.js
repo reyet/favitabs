@@ -357,6 +357,7 @@ function IncSelected(offset) {
   state.selectedRow.dataset.selected = false;
   state.selectedRow = state.shownRows[idx];
   state.selectedRow.dataset.selected = true;
+  state.selectedRow.scrollIntoViewIfNeeded();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
