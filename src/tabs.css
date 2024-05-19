@@ -29,7 +29,6 @@ body {
   position: relative;
   white-space: nowrap;
   width: 450px;
-  max-height: 1000px;
   opacity: 1;
   transition: .1s;
 }
@@ -37,6 +36,7 @@ body {
   font-weight: bold;
   font-size:14px;
   height: 24px;
+  transition: .1s;
 }
 .title {
   display:inline-block;
@@ -104,11 +104,13 @@ body {
   pointer-events: none;
 }
 .group[data-show=false] {
-  max-height: 0;
   padding-top: 0;
   padding-bottom: 0;
   opacity: 0;
   pointer-events: none;
+}
+.group[data-show=false] .grouptitle {
+  height: 0;
 }
 #matchtext {
   color: #06f;

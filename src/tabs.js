@@ -276,7 +276,7 @@ function updateSearch() {
   var reg = new RegExp(query, 'i');
   var groups = document.querySelectorAll('.group');
   var allShown = [];
-  
+
   for (var i = 0; i < groups.length; i++) {
     var g = groups[i];
     var rows = g.querySelectorAll('.row');
@@ -323,7 +323,7 @@ function updateSearch() {
   } else if (allShown.length > 0) {
     matchtext.setAttribute('shown', 'some');
   } else {
-    matchtext.setAttribute('shown', 'none');    
+    matchtext.setAttribute('shown', 'none');
   }
 
   state.shownRows = allShown;
