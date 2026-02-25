@@ -2,11 +2,15 @@ body {
   font-family: Lucida Grande, sans-serif;
   background: #ccc;
 }
+.icon-area {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+}
 .icon {
   height: 32px;
   max-width: 32px;
   border-radius: 6px;
-  position: absolute;
 }
 .row {
   height: 26px;
@@ -108,8 +112,7 @@ body {
   transition: opacity 0s 0s, visibility 0s 0s;
   cursor: pointer;
 }
-.icon:hover ~ .group-close,
-.group-close:hover {
+.icon-area:hover .group-close {
   visibility: inherit;
   opacity: 1;
   transition: opacity .1s .1s, visibility 0s .1s;

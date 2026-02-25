@@ -217,9 +217,10 @@ function showTabs(currentId, tabs) {
       var t = create('DIV', 'grouptitle', g);
       t.textContent = group.title;
     }
-    var f = create('IMG', 'icon', g);
+    var iconArea = create('DIV', 'icon-area', g);
+    var f = create('IMG', 'icon', iconArea);
     f.src = group.favIconUrl || 'default_favicon.svg';
-    var gc = create('DIV', 'group-close', g);
+    var gc = create('DIV', 'group-close', iconArea);
     clickToCloseAll(gc, group.tabs.map(function(t) { return t.id; }));
 
     for (var j = 0; j < group.tabs.length; j++) {
