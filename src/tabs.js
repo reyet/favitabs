@@ -176,10 +176,17 @@ function clickToClose(element, tid) {
   });
 }
 
-function clickToCloseAll(element, tids) {
+function clickToCloseAll(element, group) {
   element.addEventListener('click', function(e) {
     e.stopPropagation();
     e.preventDefault();
+    var rows = group.querySelectorAll('.row');
+    var tids = [];
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i].dataset.show !== 'false') {
+        tids.push(rows[i].tid);
+      }
+    }
     chrome.tabs.remove(tids);
   });
 }
@@ -221,7 +228,7 @@ function showTabs(currentId, tabs) {
     var f = create('IMG', 'icon', iconArea);
     f.src = group.favIconUrl || 'default_favicon.svg';
     var gc = create('DIV', 'group-close', iconArea);
-    clickToCloseAll(gc, group.tabs.map(function(t) { return t.id; }));
+    clickToCloseAll(gc, g);
 
     for (var j = 0; j < group.tabs.length; j++) {
       var tab = group.tabs[j];
