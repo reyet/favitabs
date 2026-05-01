@@ -176,6 +176,21 @@ function clickToClose(element, tid) {
   });
 }
 
+function clickToCloseAll(element, group) {
+  element.addEventListener('click', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    var rows = group.querySelectorAll('.row');
+    var tids = [];
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i].dataset.show !== 'false') {
+        tids.push(rows[i].tid);
+      }
+    }
+    chrome.tabs.remove(tids);
+  });
+}
+
 function hoverToHilite(element, wid) {
   element.addEventListener('mouseenter', function() {
     hiliteTabs(wid);
@@ -209,8 +224,11 @@ function showTabs(currentId, tabs) {
       var t = create('DIV', 'grouptitle', g);
       t.textContent = group.title;
     }
-    var f = create('IMG', 'icon', g);
+    var iconArea = create('DIV', 'icon-area', g);
+    var f = create('IMG', 'icon', iconArea);
     f.src = group.favIconUrl || 'default_favicon.svg';
+    var gc = create('DIV', 'group-close', iconArea);
+    clickToCloseAll(gc, g);
 
     for (var j = 0; j < group.tabs.length; j++) {
       var tab = group.tabs[j];

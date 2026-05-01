@@ -2,11 +2,15 @@ body {
   font-family: Lucida Grande, sans-serif;
   background: #ccc;
 }
+.icon-area {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+}
 .icon {
   height: 32px;
   max-width: 32px;
   border-radius: 6px;
-  position: absolute;
 }
 .row {
   height: 26px;
@@ -64,7 +68,7 @@ body {
 .row[data-selected=true] .title {
   background: #dff;
 }
-.close::before {
+.close::before, .group-close::before {
   content: "";
   width: 16px;
   height: 16px;
@@ -75,7 +79,7 @@ body {
   left: -8px;
   border-radius: 8px;
 }
-.close::after {
+.close::after, .group-close::after {
   content: "";
   width: 10px;
   height: 2px;
@@ -94,6 +98,21 @@ body {
   cursor: pointer;
 }
 .tab:hover .close {
+  visibility: inherit;
+  opacity: 1;
+  transition: opacity .1s .1s, visibility 0s .1s;
+}
+.group-close {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0s 0s, visibility 0s 0s;
+  cursor: pointer;
+}
+.icon-area:hover .group-close {
   visibility: inherit;
   opacity: 1;
   transition: opacity .1s .1s, visibility 0s .1s;
