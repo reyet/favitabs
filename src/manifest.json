@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Favitabs",
   "author": "Richard Tucker",
-  "version": "1.2",
+  "version": "1.3",
   
   "description": "Organise tabs by favicon, navigate them with mouse or keyboard",
   "icons": { "128": "icon128.png" },
